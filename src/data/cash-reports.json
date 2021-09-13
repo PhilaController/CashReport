@@ -32,23 +32,23 @@
         "label": "FY20 Q3"
     },
     {
-        "slug": "cash-report-fiscal-year-2020-q4",
+        "slug": "cash-report-fiscal-year-2020",
         "label": "FY20 Q4"
     },
     {
         "slug": "cash-report-fiscal-year-2021-q1",
-        "label": "FY20 Q1"
+        "label": "FY21 Q1"
     },
     {
         "slug": "cash-report-fiscal-year-2021-q2",
-        "label": "FY20 Q2"
+        "label": "FY21 Q2"
     },
     {
         "slug": "cash-report-fiscal-year-2021-q3",
-        "label": "FY20 Q3"
+        "label": "FY21 Q3"
     },
     {
-        "slug": "cash-report-fiscal-year-2021-q4",
-        "label": "FY20 Q4"
+        "slug": "cash-report-fiscal-year-2021",
+        "label": "FY21 Q4"
     }
 ]
