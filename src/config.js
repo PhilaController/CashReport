@@ -1,0 +1,4 @@
+const FISCAL_YEAR = 2021;
+const QUARTER = 4;
+
+export { FISCAL_YEAR, QUARTER }
