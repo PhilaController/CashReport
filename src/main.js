@@ -22,10 +22,53 @@ function add_help_message() {
   $(".back-link").after(helpMessage);
 }
 
+async function add_archived_reports_button() {
+
+  // Create a dropdown element and button
+  let dropdown = $(`<div class="dropdown mt-2"></div>`);
+  let button = $(`<button class="btn btn-primary btn-block dropdown-toggle" type="button" id="otherReportsButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  Other Cash Reports</button>`);
+  let dropdownMenu = $(
+    `<div class="dropdown-menu w-100" aria-labelledby="otherReportsButton"></div>`
+  );
+
+  // Load the data
+  let response = await fetch("https://raw.githubusercontent.com/PhiladelphiaController/CashReport/main/src/data/cash-reports.json");
+  let data = await response.json();
+
+  // Add each URL
+  let baseURL = "https://controller.phila.gov/philadelphia-audits/";
+  for (let i = 0; i < data.length; i++) {
+    let item = data[i]
+    dropdownMenu.append(
+      `<a class="dropdown-item" style="color: #212529;" href="${baseURL}/${item.slug}">${item.label}</a>`
+    );
+  }
+  dropdown.append(button);
+  dropdown.append(dropdownMenu);
+
+  // Don't add more than once
+  if ($("#otherReportsButton").length > 0) return;
+
+  // Add the dropdown button
+  $(".entry-header .btn")
+    .last()
+    .after(dropdown);
+}
+
 new Vue({
   vuetify,
   render: h => h(App)
 }).$mount('#app')
 
-// add a help message
-add_help_message();
+// When document is loaded --> turn off FA tracking
+$(document).ready(function () {
+
+  // Add the button
+  add_archived_reports_button();
+
+  // add a help message
+  add_help_message();
+
+
+})
