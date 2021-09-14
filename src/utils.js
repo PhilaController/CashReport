@@ -48,7 +48,7 @@ function getDownloadURL(key) {
 
 function fetch(key) {
     try {
-        const data = csv(getDownloadURL(key));
+        let data = csv(getDownloadURL(key));
         return data
     } catch (e) {
         console.error(e);

@@ -5,6 +5,8 @@ import vuetify from '@/plugins/vuetify'
 import App from '@/App.vue'
 import $ from "jquery"
 import { descending } from 'd3-array';
+import { getFiscalQuarterTag } from "@/utils"
+import { FISCAL_YEAR, QUARTER } from "@/config"
 
 Vue.config.productionTip = false
 
@@ -46,10 +48,18 @@ async function add_archived_reports_button() {
   // Sort the data in descending order
   data = data.sort((a, b) => descending(a.label, b.label));
 
+  // This report
+  let thisReport = getFiscalQuarterTag(FISCAL_YEAR, QUARTER);
+
   // Add each URL
   let baseURL = "https://controller.phila.gov/philadelphia-audits/";
   for (let i = 0; i < data.length; i++) {
     let item = data[i]
+
+    // Skip the current report
+    if (item.label === thisReport) continue;
+
+    // Otherwise, add the dropdown item
     dropdownMenu.append(
       `<a class="dropdown-item" style="color: #212529;" href="${baseURL}/${item.slug}">${item.label}</a>`
     );

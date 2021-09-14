@@ -1,45 +1,50 @@
 <template>
   <v-app>
     <v-main>
-      <!-- 1. Introduction -->
-      <Intro />
-
-      <!-- 2. Key Takeaways -->
+      <!-- <Intro />
       <KeyTakeaways />
-
-      <!-- 3. Cash Balances -->
       <CashBalances />
-
-      <!-- 4. General Fund -->
       <GeneralFund />
-
-      <!-- 5. Conclusion -->
       <Conclusion />
+      <Footnotes /> -->
 
-      <!-- 6. Footnotes -->
-      <Footnotes />
+      <FundBalanceProjectionAccuracy :height="450" />
+      <CashTotalsProjectionAccuracy
+        class="mt-5"
+        :height="450"
+        flavor="revenue"
+      />
+      <CashTotalsProjectionAccuracy
+        class="mt-5"
+        :height="450"
+        flavor="spending"
+      />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Intro from "@/sections/1-Intro";
-import KeyTakeaways from "@/sections/2-KeyTakeaways";
-import CashBalances from "@/sections/3-CashBalances";
-import GeneralFund from "@/sections/4-GeneralFund";
-import Conclusion from "@/sections/5-Conclusion";
-import Footnotes from "@/sections/6-Footnotes";
+// import Intro from "@/sections/1-Intro";
+// import KeyTakeaways from "@/sections/2-KeyTakeaways";
+// import CashBalances from "@/sections/3-CashBalances";
+// import GeneralFund from "@/sections/4-GeneralFund";
+// import Conclusion from "@/sections/5-Conclusion";
+// import Footnotes from "@/sections/6-Footnotes";
+import FundBalanceProjectionAccuracy from "@/charts/FundBalanceProjectionAccuracy";
+import CashTotalsProjectionAccuracy from "@/charts/CashTotalsProjectionAccuracy";
 
 export default {
   name: "CashReportApp",
 
   components: {
-    Intro,
-    KeyTakeaways,
-    CashBalances,
-    GeneralFund,
-    Conclusion,
-    Footnotes,
+    FundBalanceProjectionAccuracy,
+    CashTotalsProjectionAccuracy,
+    // Intro,
+    // KeyTakeaways,
+    // CashBalances,
+    // GeneralFund,
+    // Conclusion,
+    // Footnotes,
   },
 };
 </script>

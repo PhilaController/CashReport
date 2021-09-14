@@ -1,4 +1,4 @@
 const FISCAL_YEAR = 2021;
-const QUARTER = 4;
+const QUARTER = 1;
 
 export { FISCAL_YEAR, QUARTER }
