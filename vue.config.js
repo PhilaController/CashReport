@@ -13,7 +13,7 @@ module.exports = {
       main: './src/main.js',
     },
     output: {
-      filename: '[name].[hash:8].bundle.js'
+      filename: '[name].[fullhash:8].bundle.js'
     },
     plugins: [
       new webpack.ProvidePlugin({
