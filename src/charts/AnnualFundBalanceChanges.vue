@@ -10,7 +10,7 @@
         align-items-start
       "
     >
-      <div class="header-title">Year-Over-Year Cash Balance Changes</div>
+      <div class="header-title">{{ headerTitle }}</div>
     </div>
 
     <!-- Main Chart Area-->
@@ -45,7 +45,16 @@
 
       <!-- The chart canvas -->
       <div :style="{ height: height + 'px' }">
-        <canvas ref="chartRef" />
+        <!-- The canvas -->
+        <canvas ref="chartRef" :aria-label="headerTitle" role="img">
+          <!-- a11y table -->
+          <a11yTable
+            v-if="rawData !== null"
+            :data="data"
+            caption="Year-over-year change in cash fund balance in millions."
+            :formatFunction="formatFunction"
+          />
+        </canvas>
       </div>
     </div>
 
@@ -59,9 +68,10 @@
 </template>
 
 <script>
+import { shallowRef } from "@vue/composition-api";
 import { Chart } from "chart.js";
 import { fetch, formatFunction, getDownloadURL } from "@/utils";
-import { shallowRef } from "@vue/composition-api";
+import a11yTable from "@/components/a11yTable";
 
 const COLORS = {
   "Grants Fund": "#f3c613",
@@ -73,12 +83,14 @@ const COLORS = {
 export default {
   name: "AnnualFundBalanceChanges",
   props: ["height"],
+  components: { a11yTable },
   data() {
     return {
       key: "annual-fund-balance-changes",
       rawData: null,
       selectedFund: null,
       chart: null,
+      headerTitle: "Year-Over-Year Cash Balance Changes",
     };
   },
   async created() {
@@ -89,7 +101,7 @@ export default {
     this.selectedFund = this.names[0];
   },
   methods: {
-    formatFunction(value, decimals) {
+    formatFunction(value, decimals = 1) {
       let out = formatFunction(value, decimals);
       if (value > 0) out = "+" + out;
       return out;
@@ -233,7 +245,7 @@ export default {
     rawData(newData) {
       if (newData !== null) {
         let ctx = this.$refs.chartRef.getContext("2d");
-        this.chart = new shallowRef(
+        this.chart = shallowRef(
           new Chart(ctx, {
             type: "bar",
             data: this.data,

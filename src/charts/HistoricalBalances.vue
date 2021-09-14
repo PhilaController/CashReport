@@ -1,5 +1,5 @@
 <template>
-  <div class="card border-dark">
+  <div class="card border-dark historical-balances-wrapper">
     <!-- Title -->
     <div
       class="
@@ -12,7 +12,7 @@
     >
       <!-- Header -->
       <div class="header-title">
-        Historical Cash Balances at the End of Q{{ quarter }}
+        {{ headerTitle }}
       </div>
 
       <!-- Exclude/Include TRAN -->
@@ -44,13 +44,35 @@
         ></v-btn>
       </div>
 
-      <!-- The chart canvas -->
+      <!-- Mobile dropdown -->
+      <v-select
+        v-if="$vuetify.breakpoint.mobile"
+        v-model="selectedFund"
+        :items="names"
+        label="Fund Name"
+        outlined
+        dense
+        hide-details
+        class="fund-select mt-5 mb-5"
+        @change="selectData"
+      ></v-select>
+
+      <!-- Chart area-->
       <div :style="{ height: height + 'px' }">
-        <canvas ref="chartRef" />
+        <!-- The Canvas -->
+        <canvas ref="chartRef" :aria-label="headerTitle" role="img">
+          <!-- a11y table -->
+          <a11yTable
+            v-if="rawData !== null"
+            :data="data"
+            caption="Cash fund balances in millions by fiscal year."
+            :formatFunction="formatFunction"
+          />
+        </canvas>
       </div>
     </div>
 
-    <div class="card-footer">
+    <div class="card-footer" v-if="!$vuetify.breakpoint.mobile">
       <div class="font-italic">
         Note: Click on a specific legend element to show/hide the corresponding
         line.
@@ -60,9 +82,11 @@
 </template>
 
 <script>
+import { shallowRef } from "@vue/composition-api";
 import { Chart } from "chart.js";
 import { fetch, formatFunction, getDownloadURL } from "@/utils";
 import { QUARTER } from "@/config";
+import a11yTable from "@/components/a11yTable";
 
 const COLORS = {
   "Grants Fund": "#f3c613",
@@ -74,26 +98,49 @@ const COLORS = {
 export default {
   name: "HistoricalBalances",
   props: ["height"],
+  components: { a11yTable },
   data() {
     return {
       toggle: false,
       key: "end-of-quarter-balances",
       quarter: QUARTER,
       rawData: null,
+      chart: null,
+      selectedFund: null,
     };
   },
   async created() {
+    // Load the data
     this.rawData = await fetch(this.key);
+
+    // Set the dropdown default
+    this.selectedFund = this.names[0];
   },
   methods: {
-    formatFunction(value, decimals) {
+    formatFunction(value, decimals = 1) {
       return formatFunction(value, decimals);
     },
     getDownloadURL(key) {
       return getDownloadURL(key);
     },
+    selectData() {
+      // Destroy the chart
+      this.chart.value.destroy();
+
+      let ctx = this.$refs.chartRef.getContext("2d");
+      this.chart = shallowRef(
+        new Chart(ctx, {
+          type: "line",
+          data: this.data,
+          options: this.options,
+        })
+      );
+    },
   },
   computed: {
+    headerTitle() {
+      return `Historical Cash Balances at the End of Q${this.quarter}`;
+    },
     names() {
       if (this.toggle == false)
         return [
@@ -116,6 +163,7 @@ export default {
         maintainAspectRatio: false,
         plugins: {
           legend: {
+            display: !this.$vuetify.breakpoint.mobile,
             labels: {
               font: {
                 size: 16,
@@ -194,9 +242,22 @@ export default {
       };
     },
     data() {
+      //   Determine which datasets
+      let names = this.names;
+      if (this.$vuetify.breakpoint.mobile) {
+        let name = this.selectedFund;
+        if (
+          this.toggle &&
+          (name == "General Fund" || name == "Consolidated Cash")
+        ) {
+          name = name + " (No TRAN)";
+        }
+        names = [name];
+      }
+
       let datasets = [];
-      for (let i = 0; i < this.names.length; i++) {
-        let name = this.names[i];
+      for (let i = 0; i < names.length; i++) {
+        let name = names[i];
         datasets.push({
           label: name,
           data: this.rawData.map((d) => d[name]),
@@ -221,11 +282,13 @@ export default {
     rawData(newData) {
       if (newData !== null) {
         let ctx = this.$refs.chartRef.getContext("2d");
-        new Chart(ctx, {
-          type: "line",
-          data: this.data,
-          options: this.options,
-        });
+        this.chart = shallowRef(
+          new Chart(ctx, {
+            type: "line",
+            data: this.data,
+            options: this.options,
+          })
+        );
       }
     },
   },
@@ -239,5 +302,14 @@ export default {
 }
 div.v-input__slot > label {
   margin-bottom: 0rem !important;
+}
+
+.historical-balances-wrapper input {
+  background-color: transparent !important;
+  border-width: 0px !important;
+}
+
+.v-list-item__title {
+  font-size: 1rem !important;
 }
 </style>

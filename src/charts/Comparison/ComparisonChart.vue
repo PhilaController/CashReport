@@ -16,21 +16,39 @@
       ></v-btn>
     </div>
 
-    <!-- The chart canvas -->
+    <!-- The chart area -->
     <div :style="{ height: height + 'px' }">
-      <canvas ref="chartRef" />
+      <!-- The Canvas -->
+      <canvas ref="chartRef" :aria-label="title" role="img">
+        <!-- a11y table -->
+        <a11yTable
+          v-if="rawData !== null"
+          :data="data"
+          :caption="title"
+          :formatFunction="formatFunction"
+        />
+      </canvas>
     </div>
   </div>
 </template>
 
 <script>
+import { shallowRef } from "@vue/composition-api";
 import { Chart } from "chart.js";
 import { isProjection, getDownloadURL, formatFunction } from "@/utils";
-import { shallowRef } from "@vue/composition-api";
+import a11yTable from "@/components/a11yTable";
 
 export default {
   name: "ComparisonChart",
-  props: ["dataColumns", "rawData", "mainColor", "height", "downloadKey"],
+  components: { a11yTable },
+  props: [
+    "dataColumns",
+    "rawData",
+    "mainColor",
+    "height",
+    "downloadKey",
+    "title",
+  ],
   data() {
     return {
       loaded: false,
@@ -157,7 +175,7 @@ export default {
     getDownloadURL(key) {
       return getDownloadURL(key);
     },
-    formatFunction(value, decimals) {
+    formatFunction(value, decimals = 1) {
       return formatFunction(value, decimals);
     },
   },

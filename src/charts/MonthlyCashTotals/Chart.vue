@@ -7,17 +7,27 @@
 
     <!-- The chart canvas -->
     <div :style="{ height: height + 'px' }">
-      <canvas ref="chartRef" />
+      <!-- The Canvas -->
+      <canvas ref="chartRef" :aria-label="headerTitle" role="img">
+        <!-- a11y table -->
+        <a11yTable
+          v-if="rawData !== null"
+          :data="data"
+          :caption="caption"
+          :formatFunction="formatFunction"
+        />
+      </canvas>
     </div>
   </div>
 </template>
 
 <script>
+import { format } from "date-fns";
+import { shallowRef } from "@vue/composition-api";
 import { Chart } from "chart.js";
 import "chartjs-adapter-date-fns";
 import { formatFunction } from "@/utils";
-import { format } from "date-fns";
-import { shallowRef } from "@vue/composition-api";
+import a11yTable from "@/components/a11yTable";
 
 const COLORS = {
   Revenue: "#000000",
@@ -27,6 +37,7 @@ const COLORS = {
 export default {
   name: "Chart",
   props: ["height", "kind", "rawData"],
+  components: { a11yTable },
   data() {
     return {
       keyPrefix: "monthly-cash-totals",
@@ -36,11 +47,17 @@ export default {
   },
 
   methods: {
-    formatFunction(value, decimals) {
+    formatFunction(value, decimals = 1) {
       return formatFunction(value, decimals);
     },
   },
   computed: {
+    headerTitle() {
+      return `Monthly cash ${this.kind} for the General Fund`;
+    },
+    caption() {
+      return `${this.headerTitle} in millions.`;
+    },
     dataColumn() {
       return this.kind === "revenue" ? "Revenue" : "Expenditures";
     },

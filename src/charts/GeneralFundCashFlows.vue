@@ -3,7 +3,7 @@
     <!-- Card Header -->
     <div class="card-header border-dark d-flex flex-column">
       <!-- Title -->
-      <div class="header-title">Annual General Fund Cash Flows</div>
+      <div class="header-title">{{ headerTitle }}</div>
 
       <!-- Subtitle -->
       <div class="header-subtitle mt-3">
@@ -34,9 +34,18 @@
         ></v-btn>
       </div>
 
-      <!-- The chart canvas -->
+      <!-- The chart area -->
       <div :style="{ height: height + 'px' }">
-        <canvas ref="chartRef" />
+        <!-- The Canvas -->
+        <canvas ref="chartRef" :aria-label="headerTitle" role="img">
+          <!-- a11y table -->
+          <a11yTable
+            v-if="rawData !== null"
+            :data="data"
+            caption="Annual totals for cash revenue and spending for the General Fund in billions by fiscal year."
+            :formatFunction="(d) => formatFunction(d, 2)"
+          />
+        </canvas>
       </div>
     </div>
   </div>
@@ -45,6 +54,7 @@
 <script>
 import { Chart } from "chart.js";
 import { fetch, getDownloadURL } from "@/utils";
+import a11yTable from "@/components/a11yTable";
 
 const COLORS = {
   Revenue: "#000000",
@@ -53,11 +63,13 @@ const COLORS = {
 
 export default {
   props: ["height"],
+  components: { a11yTable },
   data: () => ({
     rawData: null,
     chart: null,
     key: "general-fund-cash-flows",
     names: ["Revenue", "Expenditures"],
+    headerTitle: "Annual General Fund Cash Flows",
   }),
   async created() {
     this.rawData = await fetch(this.key);

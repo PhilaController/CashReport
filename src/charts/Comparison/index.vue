@@ -68,6 +68,7 @@
         :mainColor="mainColor"
         :height="height"
         :download-key="downloadKey"
+        :title="title"
       />
 
       <!-- Divider -->

@@ -12,8 +12,7 @@
     >
       <!-- Header -->
       <div class="header-title">
-        Estimating the General Fund's Modified Accrual Balance from the Q4 Cash
-        Balance
+        {{ headerTitle }}
       </div>
     </div>
 
@@ -34,9 +33,42 @@
         ></v-btn>
       </div>
 
-      <!-- The chart canvas -->
+      <!-- The chart wrapper -->
       <div :style="{ height: height + 'px' }">
-        <canvas ref="chartRef" />
+        <!-- The Canvas -->
+        <canvas ref="chartRef" :aria-label="headerTitle" role="img">
+          <table v-if="rawData !== null">
+            <caption>
+              Scatter chart of final modified accrual balance vs. Q4 cash
+              balance for the General Fund
+            </caption>
+            <!-- Header -->
+            <thead>
+              <tr>
+                <th scope="col">Modified Accrual Fund Balance</th>
+                <th scope="col">Q4 Cash Fund Balance</th>
+              </tr>
+            </thead>
+            <!-- Body -->
+            <tbody>
+              <tr
+                v-for="(label, rowIndex) in data.labels"
+                :key="`row-header-${rowIndex}`"
+              >
+                <th scope="row">{{ label }}</th>
+                <td>
+                  {{ formatFunction(data.datasets[0].data[rowIndex].y) }}
+                </td>
+                <td>
+                  {{ formatFunction(data.datasets[0].data[rowIndex].x) }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p v-if="rawData !== null">
+            {{ a11ySummary }}
+          </p>
+        </canvas>
       </div>
     </div>
   </div>
@@ -59,13 +91,15 @@ export default {
     return {
       key: "fund-balance-revisions",
       rawData: null,
+      headerTitle:
+        "Estimating the General Fund's Modified Accrual Balance from the Q4 Cash Balance",
     };
   },
   async created() {
     this.rawData = await fetch(this.key);
   },
   methods: {
-    formatFunction(value, decimals) {
+    formatFunction(value, decimals = 1) {
       return formatFunction(value, decimals);
     },
     getDownloadURL(key) {
@@ -73,10 +107,22 @@ export default {
     },
   },
   computed: {
+    currentQ4CashBalance() {
+      return this.rawData.filter((d) => d["Fiscal Year"] == FISCAL_YEAR)[0][
+        "Q4 Cash Balance"
+      ];
+    },
+    a11ySummary() {
+      let q4CashBalance = this.formatFunction(this.currentQ4CashBalance);
+      let lowerEstimate = this.formatFunction(this.data.datasets[1].data[0].y);
+      let upperEstimate = this.formatFunction(this.data.datasets[1].data[1].y);
+      return `For fiscal year ${FISCAL_YEAR}, the Q4 cash balance for the General Fund is 
+            ${q4CashBalance}. With this Q4 cash balance, the lower and upper estimates for 
+            the General Fund's final modified accrual balance are
+            ${lowerEstimate} and ${upperEstimate}, respectively.`;
+    },
     options() {
-      let q4_cash_balance = this.rawData.filter(
-        (d) => d["Fiscal Year"] == FISCAL_YEAR
-      )[0]["Q4 Cash Balance"];
+      let q4_cash_balance = this.currentQ4CashBalance;
 
       return {
         responsive: true,
@@ -97,7 +143,7 @@ export default {
                   rotation: -90,
                   backgroundColor: "#fff",
                   color: "#000",
-                  xAdjust: -15,
+                  xAdjust: !this.$vuetify.breakpoint.mobile ? -15 : 0,
                   yAdjust: 70,
                   font: { size: 16 },
                 },
@@ -105,6 +151,7 @@ export default {
             },
           },
           legend: {
+            onClick: () => {},
             labels: {
               font: {
                 size: 16,
@@ -153,7 +200,7 @@ export default {
               font: { size: 16 },
             },
             type: "linear",
-            offset: true,
+            bounds: !this.$vuetify.breakpoint.mobile ? "ticks" : "data",
             grid: {
               lineWidth: 1,
               color: function (context) {
@@ -246,6 +293,9 @@ export default {
       });
 
       return {
+        labels: this.rawData
+          .map((d) => d["Fiscal Year"])
+          .filter((d) => d < FISCAL_YEAR),
         datasets: datasets,
       };
     },
