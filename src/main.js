@@ -4,6 +4,7 @@ import '@/plugins/chartjs'
 import vuetify from '@/plugins/vuetify'
 import App from '@/App.vue'
 import $ from "jquery"
+import { descending } from 'd3-array';
 
 Vue.config.productionTip = false
 
@@ -41,6 +42,9 @@ async function add_archived_reports_button() {
   // Load the data
   let response = await fetch("https://raw.githubusercontent.com/PhiladelphiaController/CashReport/main/src/data/cash-reports.json");
   let data = await response.json();
+
+  // Sort the data in descending order
+  data = data.sort((a, b) => descending(a.label, b.label));
 
   // Add each URL
   let baseURL = "https://controller.phila.gov/philadelphia-audits/";
