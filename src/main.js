@@ -26,10 +26,16 @@ async function add_archived_reports_button() {
 
   // Create a dropdown element and button
   let dropdown = $(`<div class="dropdown mt-2"></div>`);
-  let button = $(`<button class="btn btn-primary btn-block dropdown-toggle" type="button" id="otherReportsButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Other Cash Reports</button>`);
+  let button = $(`<button class="btn btn-primary btn-block dropdown-toggle" 
+                    type="button" 
+                    id="otherReportsButton" 
+                    data-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false">Other Cash Reports</button>`);
   let dropdownMenu = $(
-    `<div class="dropdown-menu w-100" aria-labelledby="otherReportsButton"></div>`
+    `<div class="dropdown-menu w-100" 
+          aria-labelledby="otherReportsButton"
+          style="max-height: 300px; overflow-y: auto"></div>`
   );
 
   // Load the data
