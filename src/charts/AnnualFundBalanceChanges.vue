@@ -46,7 +46,11 @@
       <!-- The chart canvas -->
       <div :style="{ height: height + 'px' }">
         <!-- The canvas -->
-        <canvas ref="chartRef" :aria-label="headerTitle" role="img">
+        <canvas
+          ref="chartRef"
+          :aria-label="`Tabular representation of the data in the chart entitled '${headerTitle}'`"
+          role="img"
+        >
           <!-- a11y table -->
           <a11yTable
             v-if="rawData !== null"

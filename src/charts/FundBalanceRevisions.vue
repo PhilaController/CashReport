@@ -36,7 +36,11 @@
       <!-- The chart wrapper -->
       <div :style="{ height: height + 'px' }">
         <!-- The Canvas -->
-        <canvas ref="chartRef" :aria-label="headerTitle" role="img">
+        <canvas
+          ref="chartRef"
+          :aria-label="`Tabular representation of the data in the chart entitled '${headerTitle}'`"
+          role="img"
+        >
           <table v-if="rawData !== null">
             <caption>
               Scatter chart of final modified accrual balance vs. Q4 cash

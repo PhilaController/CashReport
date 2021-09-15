@@ -19,7 +19,11 @@
     <!-- The chart area -->
     <div :style="{ height: height + 'px' }">
       <!-- The Canvas -->
-      <canvas ref="chartRef" :aria-label="title" role="img">
+      <canvas
+        ref="chartRef"
+        :aria-label="`Tabular representation of the data in the chart entitled '${title}'`"
+        role="img"
+      >
         <!-- a11y table -->
         <a11yTable
           v-if="rawData !== null"
