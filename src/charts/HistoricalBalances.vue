@@ -9,6 +9,7 @@
         justify-content-between
         align-items-start
       "
+      :class="$vuetify.breakpoint.mobile ? 'flex-column' : ''"
     >
       <!-- Header -->
       <div class="header-title">
@@ -24,6 +25,7 @@
         :ripple="false"
         color="#2176d2"
         label="Exclude TRAN"
+        @change="handleToggleChange"
       />
     </div>
 
@@ -91,12 +93,15 @@ import { Chart } from "chart.js";
 import { fetch, formatFunction, getDownloadURL } from "@/utils";
 import { QUARTER } from "@/config";
 import a11yTable from "@/components/a11yTable";
+import { min, max } from "d3-array";
 
 const COLORS = {
   "Grants Fund": "#f3c613",
   "Total Capital Funds": "#f99300",
   "General Fund": "#2176d2",
+  "General Fund (No TRAN)": "#2176d2",
   "Consolidated Cash": "#58c04d",
+  "Consolidated Cash (No TRAN)": "#58c04d",
 };
 
 export default {
@@ -127,6 +132,20 @@ export default {
     getDownloadURL(key) {
       return getDownloadURL(key);
     },
+    handleToggleChange() {
+      let chart = this.chart.value;
+      if (
+        this.selectedFund == "General Fund" ||
+        this.selectedFund == "Consolidated Cash"
+      ) {
+        // Remove data
+        chart.data.datasets = [];
+
+        // Add datasets
+        chart.data.datasets = [].concat(this.data.datasets);
+        chart.update();
+      }
+    },
     selectData() {
       // Destroy the chart
       this.chart.value.destroy();
@@ -146,23 +165,16 @@ export default {
       return `Historical Cash Balances at the End of Q${this.quarter}`;
     },
     names() {
-      if (this.toggle == false)
-        return [
-          "Consolidated Cash",
-          "General Fund",
-          "Grants Fund",
-          "Total Capital Funds",
-        ];
-      else
-        return [
-          "Consolidated Cash (No TRAN)",
-          "General Fund (No TRAN)",
-          "Grants Fund",
-          "Total Capital Funds",
-        ];
+      return [
+        "Consolidated Cash",
+        "General Fund",
+        "Grants Fund",
+        "Total Capital Funds",
+      ];
     },
     options() {
       return {
+        animation: { duration: 0 },
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -224,6 +236,8 @@ export default {
           },
           y: {
             offset: true,
+            suggestedMin: min(this.rawData, (d) => +d["Grants Fund"]),
+            suggestedMax: max(this.rawData, (d) => +d["Consolidated Cash"]),
             ticks: {
               font: { size: 16 },
               // eslint-disable-next-line
@@ -247,23 +261,26 @@ export default {
     },
     data() {
       //   Determine which datasets
-      let names = this.names;
+      let names = [].concat(this.names);
       if (this.$vuetify.breakpoint.mobile) {
-        let name = this.selectedFund;
+        names = [this.selectedFund];
+      }
+
+      // Add (NO TRAN)?
+      for (let i = 0; i < names.length; i++) {
+        let name = names[i];
         if (
           this.toggle &&
           (name == "General Fund" || name == "Consolidated Cash")
-        ) {
-          name = name + " (No TRAN)";
-        }
-        names = [name];
+        )
+          names[i] = name + " (No TRAN)";
       }
 
       let datasets = [];
       for (let i = 0; i < names.length; i++) {
         let name = names[i];
         datasets.push({
-          label: name,
+          label: this.names[i],
           data: this.rawData.map((d) => d[name]),
           fill: false,
           borderColor: COLORS[name],
