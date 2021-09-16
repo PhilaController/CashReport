@@ -42,7 +42,7 @@
         v-if="rawData['revenue'] !== null"
         class="mt-5 ml-5 mr-5"
         v-model="sliderRange"
-        hint="Select a time range to view"
+        hint="Select a date range to view"
         persistent-hint
         :max="maxDate.getTime()"
         :min="minDate.getTime()"
