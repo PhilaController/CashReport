@@ -1,5 +1,5 @@
 <template>
-  <div class="section">
+  <div id="cash-fund-balances" class="section">
     <h2>Cash Balances</h2>
     <hr class="titlebar" />
 

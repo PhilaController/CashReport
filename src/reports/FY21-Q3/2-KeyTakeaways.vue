@@ -1,9 +1,9 @@
 <template>
-  <div class="section">
+  <div id="key-takeaways" class="section">
     <h2>Key Takeaways</h2>
     <hr class="titlebar" />
 
-    <ul>
+    <ul aria-labelledby="key-takeaways">
       <li>
         Boosted by $300M in short-term borrowing during FY21 Q1 and grant
         funding received from the federal government to support COVID-19

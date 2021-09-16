@@ -1,6 +1,5 @@
 <template>
-  <!-- General Fund -->
-  <div class="section">
+  <div id="general-fund-revenue-spending" class="section">
     <h2>The General Fund Revenue & Spending</h2>
     <hr class="titlebar" />
 

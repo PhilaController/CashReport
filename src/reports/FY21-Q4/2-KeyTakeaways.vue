@@ -1,9 +1,9 @@
 <template>
-  <div class="section">
+  <div id="key-takeaways" class="section">
     <h2>Key Takeaways</h2>
     <hr class="titlebar" />
 
-    <ul>
+    <ul aria-labelledby="key-takeaways">
       <li>
         The City’s cash position remained strong at the end of FY21, with the
         General Fund ending the year with its highest cash balance since at

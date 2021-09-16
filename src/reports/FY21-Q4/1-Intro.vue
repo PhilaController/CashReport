@@ -1,6 +1,5 @@
 <template>
-  <!-- introduction -->
-  <div class="introduction">
+  <div id="introduction" class="section">
     <p>
       The City of Philadelphia (City) releases a summary of its current
       financial state, entitled the Quarterly City Manager’s Report (QCMR), 45

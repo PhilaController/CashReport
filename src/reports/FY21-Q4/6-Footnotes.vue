@@ -1,5 +1,5 @@
 <template>
-  <div class="section footnotes">
+  <div id="footnotes" class="section">
     <h2>Footnotes</h2>
     <hr class="titlebar" />
 

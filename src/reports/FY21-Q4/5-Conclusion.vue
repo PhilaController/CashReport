@@ -1,6 +1,5 @@
 <template>
-  <!-- Summary -->
-  <div class="section">
+  <div id="conclusion" class="section">
     <h2>Conclusion</h2>
     <hr class="titlebar" />
 
