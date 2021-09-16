@@ -21,7 +21,7 @@
       v-if="data !== null"
     >
       <div class="text-center mb-2">{{ labels.baseline }}</div>
-      <div>{{ formatFunction(annualTotals.baseline) }}</div>
+      <div>{{ formatFunction(displayedDataTotals.baseline) }}</div>
     </div>
     <div
       class="
@@ -60,10 +60,11 @@ export default {
     },
   },
   computed: {
-    annualTotals() {
+    displayedDataTotals() {
       //   Fund balance: get June
       if (this.flavor == "fund-balance") {
-        let d = this.data.filter((d) => d.Month == "Jun")[0];
+        let endMonths = { 1: "Sep", 2: "Dec", 3: "Mar", 4: "Jun" };
+        let d = this.data.filter((d) => d.Month == endMonths[QUARTER])[0];
         return {
           baseline: parseFloat(d[this.dataColumns.baseline]),
           comparison: parseFloat(d[this.dataColumns.comparison]),
@@ -82,7 +83,9 @@ export default {
       }
     },
     change() {
-      return this.annualTotals.baseline - this.annualTotals.comparison;
+      return (
+        this.displayedDataTotals.baseline - this.displayedDataTotals.comparison
+      );
     },
     labels() {
       // Label for the baseline
