@@ -29,7 +29,7 @@ export default { name: "Footnotes" };
 </script>
 
 <style>
-.footnotes {
+#footnotes {
   margin-top: 100px;
 }
 </style>
