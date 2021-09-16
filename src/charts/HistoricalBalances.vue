@@ -18,7 +18,7 @@
 
       <!-- Exclude/Include TRAN -->
       <v-checkbox
-        v-if="quarter !== 4"
+        v-if="quarter !== 4 && hasTRAN(selectedFund)"
         v-model="toggle"
         dense
         hide-details
@@ -116,6 +116,8 @@ export default {
       rawData: null,
       chart: null,
       selectedFund: null,
+      maxValues: {},
+      minValues: {},
     };
   },
   async created() {
@@ -124,8 +126,33 @@ export default {
 
     // Set the dropdown default
     this.selectedFund = this.names[0];
+
+    // Get min/max values
+    let names = [
+      "Consolidated Cash",
+      "General Fund",
+      "Grants Fund",
+      "Total Capital Funds",
+    ];
+    for (let i = 0; i < names.length; i++) {
+      let name = names[i];
+
+      // Determine the global min
+      if (this.hasTRAN(name))
+        this.minValues[name] = min(
+          this.rawData,
+          (d) => +d[`${name} (No TRAN)`]
+        );
+      else this.minValues[name] = min(this.rawData, (d) => +d[name]);
+
+      // Determine the global max
+      this.maxValues[name] = max(this.rawData, (d) => +d[name]);
+    }
   },
   methods: {
+    hasTRAN(name) {
+      return name == "General Fund" || name == "Consolidated Cash";
+    },
     formatFunction(value, decimals = 1) {
       return formatFunction(value, decimals);
     },
@@ -134,22 +161,25 @@ export default {
     },
     handleToggleChange() {
       let chart = this.chart.value;
-      if (
-        this.selectedFund == "General Fund" ||
-        this.selectedFund == "Consolidated Cash"
-      ) {
+      if (this.hasTRAN(this.selectedFund)) {
         // Remove data
         chart.data.datasets = [];
+
+        // Set min/max values
+        chart.options.scales.y.suggestedMin = this.minValues[this.selectedFund];
+        chart.options.scales.y.suggestedMax = this.maxValues[this.selectedFund];
 
         // Add datasets
         chart.data.datasets = [].concat(this.data.datasets);
         chart.update();
       }
     },
+
     selectData() {
       // Destroy the chart
       this.chart.value.destroy();
 
+      // Create the chart
       let ctx = this.$refs.chartRef.getContext("2d");
       this.chart = shallowRef(
         new Chart(ctx, {
@@ -173,6 +203,12 @@ export default {
       ];
     },
     options() {
+      // On mobile, set the y-axis bounds
+      let suggestedMax, suggestedMin;
+      if (this.$vuetify.breakpoint.mobile) {
+        suggestedMin = this.minValues[this.selectedFund];
+        suggestedMax = this.maxValues[this.selectedFund];
+      }
       return {
         animation: { duration: 0 },
         responsive: true,
@@ -235,9 +271,9 @@ export default {
             },
           },
           y: {
+            suggestedMax: suggestedMax,
+            suggestedMin: suggestedMin,
             offset: true,
-            suggestedMin: min(this.rawData, (d) => +d["Grants Fund"]),
-            suggestedMax: max(this.rawData, (d) => +d["Consolidated Cash"]),
             ticks: {
               font: { size: 16 },
               // eslint-disable-next-line
