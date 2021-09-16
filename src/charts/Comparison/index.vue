@@ -21,6 +21,7 @@
         ></v-select>
         <v-spacer />
         <v-select
+          v-if="quarter > 1"
           v-model="selectedComparison"
           :items="allowedComparisons"
           label="Compare To"
@@ -121,7 +122,7 @@ export default {
         { value: "fiscal-year", text: "Last Fiscal Year" },
         { value: "quarter", text: "Last Quarter's Projection" },
       ],
-      selectedComparison: "quarter",
+      selectedComparison: "fiscal-year",
       selectedDataCategory: "",
       timePeriodToggle: 0,
     };
@@ -234,6 +235,7 @@ div.v-list-item__title {
 }
 .data-category-select {
   width: 30%;
+  max-width: 400px;
 }
 
 .comparison-chart {
