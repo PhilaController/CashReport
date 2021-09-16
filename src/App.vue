@@ -1,35 +1,23 @@
 <template>
   <v-app>
     <v-main>
-      <Intro />
-      <KeyTakeaways />
-      <CashBalances />
-      <GeneralFund />
-      <Conclusion />
-      <Footnotes />
+      <FY21Q4 v-if="reportTag == 'FY21-Q4'" />
+      <FY21Q3 v-if="reportTag == 'FY21-Q3'" />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Intro from "@/sections/1-Intro";
-import KeyTakeaways from "@/sections/2-KeyTakeaways";
-import CashBalances from "@/sections/3-CashBalances";
-import GeneralFund from "@/sections/4-GeneralFund";
-import Conclusion from "@/sections/5-Conclusion";
-import Footnotes from "@/sections/6-Footnotes";
+import FY21Q4 from "@/reports/FY21-Q4";
+import FY21Q3 from "@/reports/FY21-Q3";
+import { getReportTag } from "@/utils/";
 
 export default {
   name: "CashReportApp",
-
-  components: {
-    Intro,
-    KeyTakeaways,
-    CashBalances,
-    GeneralFund,
-    Conclusion,
-    Footnotes,
+  data() {
+    return { reportTag: getReportTag() };
   },
+  components: { FY21Q4, FY21Q3 },
 };
 </script>
 
