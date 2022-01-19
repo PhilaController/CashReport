@@ -63,8 +63,14 @@ export default {
     displayedDataTotals() {
       //   Fund balance: get June
       if (this.flavor == "fund-balance") {
-        let endMonths = { 1: "Sep", 2: "Dec", 3: "Mar", 4: "Jun" };
-        let d = this.data.filter((d) => d.Month == endMonths[QUARTER])[0];
+
+        // Get the end months
+        let endMonth;
+        if (this.selectedTimePeriod == "quarter")
+          endMonth = { 1: "Sep", 2: "Dec", 3: "Mar", 4: "Jun" }[QUARTER];
+        else 
+          endMonth = "Jun";
+        let d = this.data.filter((d) => d.Month == endMonth)[0];
         return {
           baseline: parseFloat(d[this.dataColumns.baseline]),
           comparison: parseFloat(d[this.dataColumns.comparison]),
