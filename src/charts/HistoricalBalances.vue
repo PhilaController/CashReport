@@ -31,12 +31,12 @@
 
     <!-- Main Chart Area-->
     <div class="card-body">
-      <!-- Overlay a lodader -->
+      <!-- Overlay a loader -->
       <v-overlay :value="rawData === null" absolute opacity="1" color="#fff">
         <v-progress-circular indeterminate size="64" color="#2176d2" />
       </v-overlay>
 
-      <!-- Downlaod button -->
+      <!-- Download button -->
       <div class="download-button d-flex flex-row justify-content-end">
         <v-btn
           outlined
@@ -60,7 +60,9 @@
       ></v-select>
 
       <!-- Chart area-->
-      <div :style="{ height: height + 'px' }">
+      <div
+        :style="{ height: height + 'px', maxWidth: '900px', margin: 'auto' }"
+      >
         <!-- The Canvas -->
         <canvas
           ref="chartRef"

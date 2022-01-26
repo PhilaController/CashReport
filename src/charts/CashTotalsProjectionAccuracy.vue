@@ -12,7 +12,7 @@
         <v-progress-circular indeterminate size="64" color="#2176d2" />
       </v-overlay>
 
-      <!-- Downlaod button -->
+      <!-- Download button -->
       <div class="download-button d-flex flex-row justify-content-end">
         <v-btn
           outlined
