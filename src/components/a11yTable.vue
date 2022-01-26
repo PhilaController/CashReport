@@ -8,6 +8,7 @@
     <!-- Header -->
     <thead>
       <tr>
+        <th scope="col">Fiscal Year</th>
         <th
           v-for="(data, columnIndex) in data.datasets"
           :key="`column-header-${columnIndex}`"

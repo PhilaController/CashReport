@@ -7,7 +7,7 @@
 
     <!-- Main Chart -->
     <div class="card-body">
-      <!-- Overlay a lodader -->
+      <!-- Overlay a loader -->
       <v-overlay :value="rawData === null" absolute opacity="1" color="#fff">
         <v-progress-circular indeterminate size="64" color="#2176d2" />
       </v-overlay>
