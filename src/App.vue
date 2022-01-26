@@ -1,9 +1,11 @@
 <template>
-  <v-app>
-    <v-main>
-      <cash-report />
-    </v-main>
-  </v-app>
+  <div data-vuetify>
+    <v-app id="app">
+      <v-main>
+        <cash-report />
+      </v-main>
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -33,5 +35,19 @@ export default {
 }
 .section:nth-child(n + 2) {
   margin-top: 2.5rem;
+}
+
+#app h2,
+h3 {
+  margin-bottom: 1rem !important;
+  margin-top: 1rem !important;
+}
+
+#app .card-header,
+#app .card-footer {
+  padding: 0.75rem 1.25rem !important;
+}
+#app .card-body {
+  padding: 1.25rem !important;
 }
 </style>
