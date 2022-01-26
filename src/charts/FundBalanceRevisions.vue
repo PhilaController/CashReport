@@ -49,6 +49,7 @@
             <!-- Header -->
             <thead>
               <tr>
+                <th scope="col">Fiscal Year</th>
                 <th scope="col">Modified Accrual Fund Balance</th>
                 <th scope="col">Q4 Cash Fund Balance</th>
               </tr>
