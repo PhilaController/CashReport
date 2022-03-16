@@ -15,7 +15,7 @@
     </p>
     <p>
       This report summarizes the City’s cash position at the end of the second
-      quarter of fiscal year 2021 (FY21 Q2), and it reflects the ongoing impacts
+      quarter of fiscal year 2022 (FY22 Q2), and it reflects the ongoing impacts
       of the COVID-19 pandemic on the City’s finances. While the ultimate impact
       of the pandemic remains unknown, unemployment remains well above pre-COVID
       levels and many public health restrictions remain in place. As the City’s
@@ -26,11 +26,11 @@
       The report is divided into two main sections. The first discusses the cash
       balances for the City’s major funds, and the second examines the revenues
       and expenditures associated with the General Fund. In both sections we
-      present actual data for FY21 Q2. All data used in this report is taken
-      directly from the City’s QCMRs. The QCMR for FY21 Q2 can be found
+      present actual data for FY22 Q2. All data used in this report is taken
+      directly from the City’s QCMRs. The QCMR for FY22 Q2 is available
       <a
-        href="https://www.phila.gov/media/20210426162255/quarterly-cm-report-202012.pdf"
-        target="_blank"
+        href="https://www.phila.gov/media/20220217152839/Quarterly-City-Managers-Report-December-31-2021.pdf"
+        target="blank_"
         >here</a
       >.
     </p>
