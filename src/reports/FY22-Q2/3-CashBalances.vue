@@ -45,10 +45,10 @@
       The General Fund balance decreased from a high of $862M in FY21 Q2 to
       $665M in FY22 Q2 (a $197M decrease). Most of this decline is due to the
       City’s issuance of a $300M Tax and Revenue Anticipation Note during FY21
-      Q1, which boosted the cash fund balance relative to FY22 when no such
-      borrowing was made. The Capital Fund balance increased from $235M in FY21
-      Q2 to $445M in FY22 Q2 following the issuance of $295M in bond proceeds
-      for capital projects during the first quarter of FY22.
+      Q1. This short-term borrowing boosted the cash fund balance relative to
+      FY22 when no such borrowing was made. The Capital Fund balance increased
+      from $235M in FY21 Q2 to $445M in FY22 Q2 following the issuance of $295M
+      in bond proceeds for capital projects during the first quarter of FY22.
     </p>
 
     <p>
