@@ -27,18 +27,6 @@
         >here</a
       >.
     </p>
-    <p>
-      The report is divided into two main sections. The first discusses the cash
-      balances for the City’s major funds, and the second examines the revenues
-      and expenditures associated with the General Fund. In both sections we
-      present actual data for the entirety of FY20. All data used in this report
-      is taken directly from the City’s QCMRs. The QCMR for FY20 Q4 can be found
-      <a
-        href="https://www.phila.gov/finance/pdfs/QCMR/QCMR%20ending%206-30-20.pdf"
-        target="_blank"
-        >here</a
-      >.
-    </p>
   </div>
 </template>
 
