@@ -59,11 +59,13 @@
     </p>
     <p>
       Cash spending for the General Fund totaled $1,115M in FY22 Q2, a $76M (6
-      percent) decrease compared to the same quarter in FY21. Most of this
-      change is due to decreased spending on contributions (-$47M), payroll
-      (-$42M), and contracts and leases (-$6M). Compared to FY21 Q2, spending
-      increased for prior year payments (+$13M), debt service (+$2M), and
-      materials and equipment (+$2M).
+      percent) decrease compared to the same quarter in FY21. This decline is
+      largely the result of differences in the timing of expenditures between
+      quarters, particularly for the categories with the two largest decreases,
+      contributions (-$47M) and payroll (-$42M). Other spending categories had
+      only modest changes relative to FY21 Q2: contracts and leases (-$6M),
+      prior year payments (+$13M), debt service (+$2M), and materials and
+      equipment (+$2M).
     </p>
 
     <h3>Projected FY22 Annual Totals</h3>
@@ -92,9 +94,10 @@
       across all spending areas in FY22 compared to FY21, with the exception of
       payments to other funds (-$14M). The largest anticipated increase in cost
       is payroll spending, which is projected to grow by $194M (+11 percent) in
-      FY22 compared to FY21, a result of increased costs of new labor union
-      contracts. The City also expects increased spending on contracts (+109M),
-      pension (+105M), and employee benefits (+$82M).
+      FY22 compared to FY21. Much of this increase ($119M) is the result of
+      increased costs from new labor union contracts. The City also expects
+      increased spending on contracts (+109M), pension (+105M), and employee
+      benefits (+$82M).
     </p>
 
     <h3>Comparison to the Adopted FY22 Budget</h3>

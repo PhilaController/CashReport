@@ -10,17 +10,15 @@
       snapshot of the current cash position of the City and the most accurate
       projection for cash balances at the close of the fiscal year. As part of
       our ongoing commitment to increasing transparency around the City’s
-      financials, the Controller’s Office releases data on the City’s cash
+      finances, the Controller’s Office releases data on the City’s cash
       position in an interactive format following the release of each QCMR.
     </p>
     <p>
       This report summarizes the City’s cash position at the end of the second
       quarter of fiscal year 2022 (FY22 Q2), and it reflects the ongoing impacts
-      of the COVID-19 pandemic on the City’s finances. While the ultimate impact
-      of the pandemic remains unknown, unemployment remains well above pre-COVID
-      levels and many public health restrictions remain in place. As the City’s
-      economy begins its recovery, the Controller’s Office will continue to
-      monitor the City’s finances in future cash reports.
+      of the COVID-19 pandemic on the City’s finances. As the City’s economy
+      recovers, the Controller’s Office will continue to monitor the City’s
+      finances in future cash reports.
     </p>
     <p>
       The report is divided into two main sections. The first discusses the cash

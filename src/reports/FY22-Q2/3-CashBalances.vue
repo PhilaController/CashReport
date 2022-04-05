@@ -14,16 +14,16 @@
     </p>
     <ul>
       <li>
-        the General Fund, which is the principal operating fund of the City.
+        The General Fund, which is the principal operating fund of the City.
         About three-quarters of the revenue flowing into the General Fund is
         generated from local taxes;
       </li>
       <li>
-        the Grants Fund, which manages grants received from state, federal, and
+        The Grants Fund, which manages grants received from state, federal, and
         private agencies; and
       </li>
       <li>
-        the Capital Fund, which manages resources for investing in facilities
+        The Capital Fund, which manages resources for investing in facilities
         and infrastructure throughout the city. The majority of its revenue
         arises from bond proceeds.
       </li>

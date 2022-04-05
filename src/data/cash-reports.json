@@ -52,7 +52,11 @@
         "label": "FY21 Q4"
     },
     {
-        "slug": "cash-report-fiscal-year-2022",
+        "slug": "cash-report-fiscal-year-2022-q1",
         "label": "FY22 Q1"
+    },
+    {
+        "slug": "cash-report-fiscal-year-2022-q2",
+        "label": "FY22 Q2"
     }
 ]

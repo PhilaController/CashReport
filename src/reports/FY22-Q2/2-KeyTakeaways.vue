@@ -19,10 +19,11 @@
         General Fund since receiving these funds in FY21 Q4.
       </li>
       <li>
-        Cash spending for the General Fund totaled $1,115M in FY22 Q2, a $76M
-        (-6 percent) decrease relative to the same quarter in FY21. The City
-        projects annual FY22 cash spending to exceed all prior years, with
-        anticipated General Fund expenditures totaling $5,239M.
+        Cash spending for the General Fund totaled $1,115M in FY22 Q2. This is a
+        $76M (-6 percent) decrease relative FY21 Q2 due to changes in the timing
+        of expenditures between quarters. The City projects annual FY22 cash
+        spending to exceed all prior years, with anticipated General Fund
+        expenditures totaling $5,239M.
       </li>
       <li>
         The Consolidated Cash fund is projected to end the fiscal year with a
