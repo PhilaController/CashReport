@@ -81,7 +81,7 @@
       Taxes (+$67M), the Sales Tax (+$50M), non-tax revenues (+$31M), the Wage
       Tax (+$24M), and the Beverage Tax (+$9M). These increases are partially
       offset by a year-over-year decline in BIRT collections, which are
-      projected to fall $267M below last year’s total due a double payment of
+      projected to fall $267M below last year’s total due to a double payment of
       the tax in FY21, the result of a one-time shift in collection dates (from
       FY20 Q4 to FY21 Q1).
     </p>
