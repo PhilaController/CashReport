@@ -74,6 +74,7 @@ const revenueOptions = [
     "Other Taxes",
     "Locally Generated Non-Tax",
     "Prior Year Revenue",
+    "Interfund Transfers",
     "Other Governments"
 ];
 
@@ -87,6 +88,7 @@ const spendingOptions = [
     "Pension",
     "Contributions / Indemnities",
     "Debt Service",
+    "Interfund Charges",
     "Prior Year Payments"
 ];
 
