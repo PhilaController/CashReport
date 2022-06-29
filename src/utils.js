@@ -65,6 +65,7 @@ const fundOptions = [
 
 const revenueOptions = [
     "Total Cash Receipts",
+    "Total Tax Revenue",
     "Wage, Earnings, Net Profits",
     "Real Estate Tax",
     "BIRT",
