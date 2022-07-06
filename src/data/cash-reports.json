@@ -58,5 +58,9 @@
     {
         "slug": "cash-report-fiscal-year-2022-q2",
         "label": "FY22 Q2"
+    },
+    {
+        "slug": "cash-report-fiscal-year-2022-q3",
+        "label": "FY22 Q3"
     }
 ]
