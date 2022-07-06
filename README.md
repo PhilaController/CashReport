@@ -5,6 +5,8 @@ These reports are produced quarterly using data from the Quarterly City Manager'
 
 View the past cash reports:
 
+- [FY22 Q3](https://controller.phila.gov/philadelphia-audits/cash-report-fiscal-year-2022-q3/)
+- [FY22 Q2](https://controller.phila.gov/philadelphia-audits/cash-report-fiscal-year-2022-q2/)
 - [FY22 Q1](https://controller.phila.gov/philadelphia-audits/cash-report-fiscal-year-2022-q1/)
 - [FY21 Q4](https://controller.phila.gov/philadelphia-audits/cash-report-fiscal-year-2021/)
 - [FY21 Q3](https://controller.phila.gov/philadelphia-audits/cash-report-fiscal-year-2021-q3/)
